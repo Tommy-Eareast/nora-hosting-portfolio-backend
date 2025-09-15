@@ -12,10 +12,10 @@ const eventPostSchema = mongoose.Schema({
     },
     hostedOn: {
         type: Date,
-        default: new Date(),
+        default: Date.now,
     },
 });
 
-const EventPostMessage = mongoose.model("EventPostMessage", eventPostSchema);
+const EventPost = mongoose.model("EventPost", eventPostSchema);
 
-export default EventPostMessage;
+export default EventPost;

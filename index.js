@@ -1,20 +1,20 @@
 import express from "express";
-import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import eventPostRoutes from "./routes/eventPosts.js";
 
+dotenv.config();
 const app = express();
 
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use("/eventposts", eventPostRoutes);
 
-const CONNECTION_URL =
-    "mongodb+srv://MyMemoryApp:mymemoryapp@mycluster.eaametj.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
+const CONNECTION_URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
